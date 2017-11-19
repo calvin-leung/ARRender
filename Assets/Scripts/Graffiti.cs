@@ -1,18 +1,16 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using System.Collections.Generic;
 
 public class Graffiti
 {
     public float latitude;
     public float longitude;
-    public Drawing drawing;
+    public List<Stroke> strokes;
 
     public Graffiti() {
     }
 
-    public Graffiti(Drawing drawing, float latitude, float longitude) {
-        this.drawing = drawing;
+    public Graffiti(List<Stroke> strokes, float latitude, float longitude) {
+        this.strokes = strokes;
         this.latitude = latitude;
         this.longitude = longitude;
     }

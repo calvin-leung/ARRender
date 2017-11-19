@@ -1,14 +1,15 @@
 ﻿using UnityEngine;
 using System.Text.RegularExpressions;
+using System.Collections.Generic;
 
 public class DrawingObjGenerator : MonoBehaviour{
 	public GameObject drawingObjPrefab;
 	public GameObject strokeObjPrefab;
 
 	// Generates a GameObject from a Drawing and returns it
-	public GameObject genObject(Drawing drawing){
+	public GameObject genObject(List<Stroke> strokes) {
 		Transform parentTransform = Instantiate (drawingObjPrefab).transform;
-		foreach(var stroke in drawing.strokes){
+		foreach(var stroke in strokes){
 			StrokeObj strokeObj = Instantiate (strokeObjPrefab, parentTransform).GetComponent<StrokeObj>();
 			strokeObj.updateRender (stroke);
 		}
@@ -19,7 +20,7 @@ public class DrawingObjGenerator : MonoBehaviour{
 	}
 
 	public GameObject genObject(Graffiti graffiti){
-		return genObject (graffiti.drawing);
+		return genObject (graffiti.strokes);
 	}
 
 	public Drawing genDrawing(string importString){
