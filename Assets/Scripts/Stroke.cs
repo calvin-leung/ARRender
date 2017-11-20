@@ -6,8 +6,10 @@ using UnityEngine;
 public class Stroke {
     [SerializeField]
     public List<Vector3> pts;
+	public Color color;
 
 	public Stroke(){
 		pts = new List<Vector3> ();
+		color = Color.red;
 	}
 }
