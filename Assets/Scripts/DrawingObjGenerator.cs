@@ -5,16 +5,14 @@ using System.Collections.Generic;
 public class DrawingObjGenerator : MonoBehaviour{
 	public GameObject drawingObjPrefab;
 	public GameObject strokeObjPrefab;
+	public Transform parentObject;
 
-	// Generates a GameObject from a Drawing and returns it
-	public GameObject genObject(List<Stroke> strokes) {
-		Transform parentTransform = Instantiate (drawingObjPrefab).transform;
+	public GameObject genObject(List<Stroke> strokes) {				// Generates a GameObject from a Drawing and returns it
+		Transform parentTransform = Instantiate (drawingObjPrefab, parentObject).transform;
 		foreach(var stroke in strokes){
 			StrokeObj strokeObj = Instantiate (strokeObjPrefab, parentTransform).GetComponent<StrokeObj>();
 			strokeObj.updateRender (stroke);
 		}
-
-		// Attach and initilize Kudan Drivers/Markers here
 
 		return parentTransform.gameObject;
 	}
@@ -24,12 +22,10 @@ public class DrawingObjGenerator : MonoBehaviour{
 	}
 
 	public Drawing genDrawing(string importString){
-		// Put names of fields between quotes
 		Regex re = new Regex ("([A-Za-z_]+[A-Za-z_0-9]*)\\s*=");
-		importString = re.Replace(importString, "\"$1\"=");
-		// Replace '=' with ':'
+		importString = re.Replace(importString, "\"$1\"="); 		// Put names of fields between quotes
 		re = new Regex ("=");
-		importString = re.Replace(importString, ":");
+		importString = re.Replace(importString, ":");				// Replace '=' with ':'
 		return JsonUtility.FromJson<Drawing> (importString);
 	}
 }
