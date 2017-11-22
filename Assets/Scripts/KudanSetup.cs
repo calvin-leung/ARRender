@@ -6,7 +6,9 @@ namespace Kudan.AR{
 		public DrawingObjGenerator generator;
 
 		void Start(){
-			Drawing drawing = generator.genDrawing ("JSON GOES HERE");		// Parse the json input
+            AndroidJavaClass unityPlayer = new AndroidJavaClass("eu.kudan.ar.UnityPlayerActivity");
+            string json = unityPlayer.CallStatic<string>("getStrokesJSON");
+            Drawing drawing = generator.genDrawing (json);		// Parse the json input
 			generator.genObject (drawing.strokes);							// Generate a kudan object to render
 
 			Invoke ("toggleTracking", 1);	// Kudan needs some setup time before you can start tracking (> 0.5s)

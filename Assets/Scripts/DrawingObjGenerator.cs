@@ -22,10 +22,6 @@ public class DrawingObjGenerator : MonoBehaviour{
 	}
 
 	public Drawing genDrawing(string importString){
-		Regex re = new Regex ("([A-Za-z_]+[A-Za-z_0-9]*)\\s*=");
-		importString = re.Replace(importString, "\"$1\"="); 		// Put names of fields between quotes
-		re = new Regex ("=");
-		importString = re.Replace(importString, ":");				// Replace '=' with ':'
 		return JsonUtility.FromJson<Drawing> (importString);
 	}
 }
