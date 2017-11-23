@@ -21,7 +21,7 @@ public class DrawingObjGenerator : MonoBehaviour{
 		return genObject (graffiti.strokes);
 	}
 
-	public Drawing genDrawing(string importString){
-		return JsonUtility.FromJson<Drawing> (importString);
+	public Graffiti genDrawing(string importString){
+		return JsonUtility.FromJson<Graffiti> (importString);
 	}
 }

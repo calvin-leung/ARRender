@@ -4,10 +4,6 @@
 public class StrokeObj : MonoBehaviour {
 	private LineRenderer lineRend;
 
-	void Awake(){
-		
-	}
-
 	public void updateRender(Stroke s){
 		if(s == null || s.pts.Count <= 0){ return; }
 		if(lineRend == null){
